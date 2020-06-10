@@ -508,7 +508,7 @@ def option_delete():
                id_tree INTEGER PRIMARY KEY, sensor_tree INTEGER,
                loc_lat REAL, loc_lon REAL, date TEXT)""")
 
-        kursor.execute("DROP TABLE IF EXISTS sensor_type;")
+        kursor.execute("DROP TABLE IF EXISTS type_sensor;")
         # Create Tabel sensor_pohon
         # Create tabel sensor_pohon if not exists
         kursor.execute("""CREATE TABLE IF NOT EXISTS type_sensor (
@@ -603,6 +603,11 @@ def save_data():
          f.write(print_records)
          f.close()
 
+         # commit changes
+         conn.commit()
+         # close connection
+         conn.close()
+
     def save_data2():
         # create a database or connect to one
         conn = sqlite3.connect("kebun_kopi.db")
@@ -624,6 +629,11 @@ def save_data():
 
         f.write(print_records)
         f.close()
+
+        # Commit changes
+        conn.commit()
+        # close connection
+        conn.close()
 
     global opsi_savedata
     opsi_savedata = Tk()
